@@ -1,4 +1,5 @@
 const express=require('express')
+const { ObjectId } = require('mongodb');
 const router=express.Router();
 const {ensureAuth, ensureGuest, logout,Getstory,PostStory,truncate,replaceHtml,editIcon,GetStories,GetEdit,UpdateStory,DeleteStory}=require('./../controllers/app.controllers')
 const Story=require('./../models/story.model');
@@ -64,20 +65,23 @@ router.get('/:id',ensureAuth,async(req,res)=>{
 
 // more stories from user
     // @ GET stories/user/:userId
-    router.get('/user:id',ensureAuth,async(req,res)=>{
+    router.get('/user/:userid',ensureAuth,async(req,res)=>{
         try{
-           let id=req.params.id
+        
+        //     let user=new ObjectId(req.params.id);
+        //    let user=req.params.id
             const stories=await Story.find({
-                user:id,
-                status:'public'
+                user:req.params.userid,
+                staus:'public'
             })
             .populate('user')
-            res.render('public_stories',{stories});
+            res.render('public_stories',{stories,editIcon,replaceHtml,truncate});
+        
 
         }
      catch(err){
             console.log(err)
-            res.render('error/505');
+            res.render('errors/505');
         }
     })
 module.exports=router;

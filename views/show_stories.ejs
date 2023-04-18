@@ -8,7 +8,7 @@
            <div class="card-content">
                 <span class="card-title"></span>
             <%- story.body %>
-            <small class="lead"><%= story.createdAt.toLocaleString() %></small>
+            <small class="lead"><span>Time Posted: </span><%= story.createdAt.toLocaleString() %></small>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
                 <img src="<%= story.user.image %>" alt="" srcset="" class="circle responsive-img img-small">
             </div>
             <div class="card-action">
-                <a href="/stories/user<%= story.user._id %>">More from <%= story.user.firstName %></a>
+                <a href="/stories/user/<%= story.user._id %>">More from <%= story.user.firstName %></a>
             </div>
         </div>
     </div>

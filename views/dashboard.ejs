@@ -28,7 +28,7 @@
            <% for(let i=0; i <stories.length; i++) { %>
                  <% let story=stories[i] %>
             <tr>
-                <td><a href="/stories/user<%=story._id%>"><%= story.title %></a></td>
+                <td><a href="/stories/<%=story._id%>"><%= story.title %></a></td>
     
                 <td><span><%=story.createdAt.toLocaleString()  %></span></td>
 

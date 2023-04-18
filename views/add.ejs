@@ -1,0 +1,48 @@
+
+<%- include('partials/_header.ejs') %>
+<h3 class="mt-4">Write your Story</h3>
+
+
+<div class="row">
+  <div class="col-12">
+     
+
+    <form action="/stories" method="POST"class="col-12">
+      <% if(success_msg!=''){ %>'
+        <%= success_msg %>
+        <% } %>
+    
+      <div class="card z-depth-3">
+          <div class="card-content">
+              <div class="input-field">
+                  <input type="text" 
+                  id="title" 
+                  name="title">
+                  <label for="title">Title</label>
+              </div>
+        
+          <div class="input-filed">
+              <select name="staus" id="status">
+                  <option value="public" selected>Public</option>
+                  <option value="private">Private</option>
+              </select>
+
+              <label for="status"Status></label>
+          </div>
+  
+
+          <div class="input-field">
+              <h5>Write Your Story:</h5>
+              <textarea name="body" id="body"></textarea>
+          </div>
+        </div>
+        
+          
+        </div>  
+          </div>
+      </div> <input type="submit" value="Save" class="btn light-blue mr-3 text-white">
+          <a href="/dashboard" class="btn red text-white">Cancel</a>
+    </form>
+       
+  </div>
+</div>

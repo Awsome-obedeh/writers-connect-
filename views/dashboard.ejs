@@ -1,0 +1,60 @@
+<%- include('partials/_header.ejs') %>
+<%- include('partials/_btn.ejs') %>
+<h6 class="mt-5 p-4">dashboard</h6>
+<h1>Welcome, <%= name %></h1>
+<% if (success_msg !='') {%>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <%= success_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %>
+
+<% if (stories.length>0) { %>
+   
+        
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>   
+        </thead> 
+
+        <tbody>
+           <% for(let i=0; i <stories.length; i++) { %>
+                 <% let story=stories[i] %>
+            <tr>
+                <td><a href="/stories/user<%=story._id%>"><%= story.title %></a></td>
+    
+                <td><span><%=story.createdAt.toLocaleString()  %></span></td>
+
+                <td class="dash-status"><%= story.staus  %></td>
+
+                <td>
+                    <a href="/stories/edit<%=story._id %>" class="btn btn-float light-blue">
+                    <i class="fas fa-edit "></i></a>
+
+                    <form action="/stories/<%= story._id %>" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button href="" class="btn red"><i class="bi bi-trash3-fill "></i></button>
+                    </form>
+                  
+
+
+                </td>
+             </tr>
+
+           <% } %>
+        </tbody>
+    </table>
+      
+        
+
+
+<% } else { %>
+    <p class="blockquote">You have no stories yet, Click Bottom Right to Create</p>
+<% } %>
